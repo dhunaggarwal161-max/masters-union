@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Masters' Union — Creative Studio</title>
+
+  <style>
+    :root {
+      --black: #111111;
+      --white: #f8f7f3;
+      --cream: #eeece5;
+      --muted: #77746d;
+      --line: #d8d5cc;
+      --accent: #c9ff00;
+      --dark-green: #152319;
+      --radius: 2px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    /* NAV */
+
+    nav {
+      height: 76px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 42px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(248,247,243,.94);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 9px;
+      letter-spacing: .16em;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-right a:hover {
+      opacity: .55;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 650px;
+      background: var(--black);
+      color: var(--white);
+      padding: 85px 5vw 75px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: -260px;
+      bottom: -340px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .9;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      max-width: 1000px;
+      font-size: clamp(70px, 11vw, 160px);
+      line-height: .84;
+      letter-spacing: -.075em;
+      font-weight: 900;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 em {
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      position: relative;
+      z-index: 2;
+      gap: 40px;
+    }
+
+    .hero-bottom p {
+      max-width: 390px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #bcbcb7;
+    }
+
+    .stats {
+      display: flex;
+      gap: 45px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      letter-spacing: -.05em;
+    }
+
+    .stat span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #888884;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 5vw;
+    }
+
+    .section-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .17em;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .intro h2 {
+      font-size: clamp(42px, 6vw, 84px);
+      line-height: .9;
+      letter-spacing: -.065em;
+    }
+
+    .intro-copy {
+      font-size: 18px;
+      line-height: 1.55;
+      max-width: 520px;
+    }
+
+    /* WORK */
+
+    .work-section {
+      background: var(--cream);
+    }
+
+    .video-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      overflow: hidden;
+      margin-top: 55px;
+    }
+
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ROLES */
+
+    .roles-section {
+      background: var(--white);
+    }
+
+    .roles-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 45px;
+      gap: 30px;
+    }
+
+    .roles-top h2 {
+      font-size: clamp(55px, 8vw, 115px);
+      letter-spacing: -.075em;
+      line-height: .8;
+    }
+
+    .search-area {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .search-area input,
+    .search-area select {
+      height: 42px;
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 0 13px;
+      outline: none;
+      font-size: 12px;
+    }
+
+    .search-area input {
+      width: 210px;
+    }
+
+    .roles-count {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .role-list {
+      border-top: 1px solid var(--black);
+    }
+
+    .role-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .role-main {
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+      cursor: pointer;
+      transition: padding .25s ease;
+    }
+
+    .role-main:hover {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .role-title {
+      font-size: clamp(21px, 3vw, 34px);
+      letter-spacing: -.045em;
+      font-weight: 700;
+    }
+
+    .role-arrow {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .25s;
+      font-size: 17px;
+    }
+
+    .role-item.open .role-arrow {
+      transform: rotate(45deg);
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .role-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s ease;
+    }
+
+    .role-item.open .role-detail {
+      max-height: 900px;
+    }
+
+    .role-detail-inner {
+      padding: 8px 4px 38px;
+      max-width: 1050px;
+    }
+
+    .tldr {
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 750px;
+      margin-bottom: 28px;
+      color: #46443f;
+    }
+
+    .detail-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 25px;
+    }
+
+    .meta-box {
+      padding: 17px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .meta-box:last-child {
+      border-right: none;
+    }
+
+    .meta-label {
+      display: block;
+      text-transform: uppercase;
+      font-size: 8px;
+      letter-spacing: .15em;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* SMALL BOXED SUBHEADINGS */
+
+    .accordion {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 25px;
+    }
+
+    .accordion-box {
+      border: 1px solid var(--line);
+      background: #f3f1eb;
+    }
+
+    .accordion-header {
+      padding: 15px 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .accordion-header span {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+
+    .accordion-box.active .accordion-content {
+      max-height: 400px;
+    }
+
+    .accordion-content-inner {
+      padding: 0 17px 17px;
+      color: #55524c;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .role-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      border: 1px solid var(--black);
+      min-height: 45px;
+      padding: 0 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .btn-black {
+      background: var(--black);
+      color: white;
+    }
+
+    .btn-black:hover {
+      background: var(--accent);
+      color: var(--black);
+    }
+
+    /* PERKS */
+
+    .perks {
+      background: var(--dark-green);
+      color: var(--white);
+    }
+
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 55px;
+      border-top: 1px solid #465048;
+      border-left: 1px solid #465048;
+    }
+
+    .perk {
+      min-height: 180px;
+      padding: 25px;
+      border-right: 1px solid #465048;
+      border-bottom: 1px solid #465048;
+    }
+
+    .perk-number {
+      font-size: 11px;
+      color: #909b91;
+      margin-bottom: 45px;
+    }
+
+    .perk h3 {
+      font-size: 19px;
+      letter-spacing: -.03em;
+    }
+
+    /* CTA */
+
+    .cta {
+      background: var(--accent);
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cta h2 {
+      font-size: clamp(60px, 10vw, 150px);
+      line-height: .8;
+      letter-spacing: -.08em;
+      max-width: 1100px;
+    }
+
+    .cta-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+    }
+
+    .cta-bottom p {
+      max-width: 430px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ROLE PAGE */
+
+    .role-page {
+      min-height: 100vh;
+      background: var(--white);
+    }
+
+    .role-hero {
+      background: var(--black);
+      color: white;
+      padding: 90px 5vw 80px;
+    }
+
+    .back {
+      display: inline-block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 80px;
+      color: #aaa;
+    }
+
+    .role-hero h1 {
+      font-size: clamp(60px, 10vw, 145px);
+      line-height: .82;
+      letter-spacing: -.075em;
+      max-width: 1100px;
+    }
+
+    .role-page-body {
+      padding: 75px 5vw;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .role-page-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 100px;
+    }
+
+    .role-page-description {
+      font-size: 21px;
+      line-height: 1.5;
+      color: #35332f;
+    }
+
+    .role-page-side {
+      border-top: 1px solid var(--black);
+    }
+
+    .side-row {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+
+    .side-row small {
+      display: block;
+      font-size: 8px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .side-row strong {
+      font-size: 13px;
+    }
+
+    .apply-section {
+      background: var(--cream);
+      margin-top: 70px;
+      padding: 55px;
+    }
+
+    .apply-section h2 {
+      font-size: 55px;
+      letter-spacing: -.06em;
+      margin-bottom: 35px;
+    }
+
+    /* FORM */
+
+    .application {
+      max-width: 900px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #c9c6bd;
+      background: var(--white);
+      min-height: 50px;
+      padding: 14px;
+      outline: none;
+      font-size: 13px;
+    }
+
+    textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--black);
+    }
+
+    .submit-btn {
+      background: var(--black);
+      color: white;
+      border: 0;
+      min-height: 52px;
+      padding: 0 30px;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #333;
+    }
+
+    .form-note {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 15px;
+    }
+
+    .success {
+      display: none;
+      padding: 25px;
+      background: var(--accent);
+      margin-top: 20px;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 5vw;
+      background: var(--black);
+      color: #aaa;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .hero {
+        min-height: 620px;
+        padding: 60px 25px 50px;
+      }
+
+      .hero h1 {
+        font-size: 70px;
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .stats {
+        gap: 30px;
+      }
+
+      section {
+        padding: 75px 25px;
+      }
+
+      .intro,
+      .role-page-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .roles-top {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .search-area {
+        width: 100%;
+      }
+
+      .search-area input {
+        width: 100%;
+      }
+
+      .detail-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-box {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .meta-box:last-child {
+        border-bottom: 0;
+      }
+
+      .perks-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .apply-section {
+        padding: 30px 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .role-page-body {
+        padding: 55px 25px;
+      }
+
+      .role-page-grid {
+        gap: 55px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script>
+
+/*
+=========================================================
+MASTERS' UNION CREATIVE STUDIO
+ROLE DATA
+=========================================================
+
+IMPORTANT:
+CTC values are intentionally left as placeholders because
+the Google Sheet cannot currently be read from this environment.
+
+Replace each CTC value with the exact Projection-tab range.
+=========================================================
+*/
+
+const roles = [
+
+  {
+    id: "head-of-socials",
+    title: "Head of Socials",
+    team: "Leadership",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Own the social voice, strategy and execution across Masters' Union's creative ecosystem.",
+    description: "Lead the social function from strategy to execution, building a distinctive voice and consistently high-quality content across platforms.",
+    sections: {
+      "What you'll own": "Social strategy, content direction, platform growth, editorial planning and overall social performance.",
+      "What we're looking for": "Strong taste, strategic thinking, understanding of internet culture and the ability to turn ideas into repeatable content systems.",
+      "Why this role": "You'll have a direct influence on how Masters' Union shows up publicly and how its stories travel."
+    }
+  },
+
+  {
+    id: "ip-lead-off-campus",
+    title: "IP Lead — Off Campus",
+    team: "Leadership",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Build and own off-campus intellectual properties that extend the Masters' Union brand.",
+    description: "Develop formats, properties and experiences that can travel beyond campus and become recognisable Masters' Union IP.",
+    sections: {
+      "What you'll own": "IP development, format creation, creative direction and execution.",
+      "What we're looking for": "Someone who thinks in formats, experiences and stories rather than just individual pieces of content.",
+      "What success looks like": "Distinctive IPs that people recognise, remember and want to participate in."
+    }
+  },
+
+  {
+    id: "writer-director-lead",
+    title: "Writer Director — Lead",
+    team: "Creative & Writing",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Turn ideas into sharp scripts, stories and films with a strong point of view.",
+    description: "Lead the writing and direction of high-quality creative work across short-form, long-form and branded storytelling.",
+    sections: {
+      "What you'll own": "Concept development, scripting, direction and creative storytelling.",
+      "What we're looking for": "Exceptional writing, visual thinking and a strong understanding of pacing, humour and narrative.",
+      "The ideal person": "A storyteller who can move comfortably between a blank page and a live set."
+    }
+  },
+
+  {
+    id: "creative-producer",
+    title: "Creative Producer",
+    team: "Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Make ambitious creative ideas actually happen.",
+    description: "Work across concepts, people, production and timelines to turn creative ideas into finished work.",
+    sections: {
+      "What you'll own": "Production planning, coordination, budgets, schedules and execution.",
+      "What we're looking for": "Highly organised people who stay calm while making complicated creative projects happen.",
+      "Day to day": "You'll work closely with writers, directors, designers, editors, students and external collaborators."
+    }
+  },
+
+  {
+    id: "dop",
+    title: "Director of Photography (DOP)",
+    team: "Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Define the visual language of Masters' Union films and content.",
+    description: "Own cinematography and visual execution across productions, balancing strong aesthetics with speed and practicality.",
+    sections: {
+      "What you'll own": "Camera, lighting, framing, visual language and on-set cinematography.",
+      "What we're looking for": "Strong visual taste, technical confidence and the ability to translate creative direction into images.",
+      "The work": "A mix of polished productions, fast-turnaround social content and experimental formats."
+    }
+  },
+
+  {
+    id: "junior-producer",
+    title: "Junior Producer — POV & Short Form",
+    team: "Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Help produce fast, high-volume POV and short-form content.",
+    description: "Support the production of short-form content from planning through shoot and delivery.",
+    sections: {
+      "What you'll own": "Shoot coordination, logistics, talent coordination and production support.",
+      "What we're looking for": "High energy, attention to detail and an instinct for what works on short-form platforms.",
+      "Ideal background": "Someone who enjoys being close to the action and learning by doing."
+    }
+  },
+
+  {
+    id: "student-host-off-campus",
+    title: "Student Host — Off Campus",
+    team: "Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Be the on-camera face of Masters' Union's off-campus storytelling.",
+    description: "Host content, conversations and experiences outside campus while representing the Masters' Union voice naturally on camera.",
+    sections: {
+      "What you'll own": "Hosting, interviews, field content and audience-facing storytelling.",
+      "What we're looking for": "Natural communication, confidence and the ability to make people feel comfortable.",
+      "The role": "Part presenter, part storyteller, part curious human."
+    }
+  },
+
+  {
+    id: "post-production-supervisor",
+    title: "Post Production Supervisor",
+    team: "Post-Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Build the system that gets great footage to great final cuts.",
+    description: "Manage the post-production pipeline across multiple projects while maintaining quality and speed.",
+    sections: {
+      "What you'll own": "Post workflow, editors, timelines, quality control and delivery.",
+      "What we're looking for": "Strong editing knowledge combined with exceptional organisation.",
+      "Success": "A post-production system that is fast, reliable and creatively ambitious."
+    }
+  },
+
+  {
+    id: "video-editor-short-form",
+    title: "Video Editor — Short Form",
+    team: "Post-Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Edit short-form videos that people actually want to finish watching.",
+    description: "Turn raw footage into sharp, platform-native short-form content with strong pacing and storytelling.",
+    sections: {
+      "What you'll own": "Editing, pacing, sound, captions, transitions and final delivery.",
+      "What we're looking for": "Internet-native editors with excellent rhythm and taste.",
+      "Bonus": "Motion graphics, sound design and strong meme/internet culture awareness."
+    }
+  },
+
+  {
+    id: "video-editor-long-form",
+    title: "Video Editor — Long Form",
+    team: "Post-Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Turn long-form footage into compelling stories.",
+    description: "Edit interviews, documentaries, educational content and longer creative pieces from rough footage to final delivery.",
+    sections: {
+      "What you'll own": "Story structure, editing, sound design, pacing and finishing.",
+      "What we're looking for": "Editors who understand narrative rather than simply cutting footage.",
+      "Ideal person": "Someone obsessed with the difference between a good edit and a great one."
+    }
+  },
+
+  {
+    id: "motion-graphics-artist",
+    title: "Motion Graphics Artist",
+    team: "Post-Production",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Bring stories to life through motion, graphics and visual systems.",
+    description: "Create motion graphics and visual treatments across social content, campaigns and larger productions.",
+    sections: {
+      "What you'll own": "Motion design, animation, graphics and visual experimentation.",
+      "What we're looking for": "Strong visual taste with technical confidence in motion tools.",
+      "Bonus": "3D, compositing and experimental visual work."
+    }
+  },
+
+  {
+    id: "creative-designer-l2",
+    title: "Creative Designer (L2)",
+    team: "Design",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Design visual work that feels unmistakably Masters' Union.",
+    description: "Create design systems and visual assets across campaigns, social, events and brand communication.",
+    sections: {
+      "What you'll own": "Campaign design, social assets, presentations, event collateral and visual systems.",
+      "What we're looking for": "Strong typography, composition and conceptual thinking.",
+      "The standard": "Clean, distinctive and never generic."
+    }
+  },
+
+  {
+    id: "social-media-associate",
+    title: "Social Media Associate",
+    team: "Social & Growth",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Help build the social presence of Masters' Union every day.",
+    description: "Work across content planning, publishing, community and performance to grow social channels.",
+    sections: {
+      "What you'll own": "Content calendars, publishing, community management and analytics.",
+      "What we're looking for": "Someone deeply plugged into internet culture and social platforms.",
+      "Growth mindset": "You should naturally look at content and ask why it worked."
+    }
+  },
+
+  {
+    id: "outreach-specialist",
+    title: "Outreach Specialist",
+    team: "Social & Growth",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Build relationships with creators, communities and people who can amplify our work.",
+    description: "Own outreach across creators, communities and external partners to create meaningful opportunities.",
+    sections: {
+      "What you'll own": "Outreach pipelines, communication, relationship management and collaborations.",
+      "What we're looking for": "Sharp communication, persistence and excellent people skills.",
+      "The advantage": "You'll see how creative ideas become distribution."
+    }
+  },
+
+  {
+    id: "student-community-intern",
+    title: "Student Community Intern",
+    team: "Social & Growth",
+    type: "Internship",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Help build and engage the student community around Masters' Union.",
+    description: "Support community initiatives, student communication, engagement and content-led community building.",
+    sections: {
+      "What you'll own": "Community engagement, communication, events and student-facing initiatives.",
+      "What we're looking for": "A student who understands people, communities and campus culture.",
+      "Internship": "A hands-on role with exposure to creative, community and growth work."
+    }
+  },
+
+  {
+    id: "influencer-operations-intern",
+    title: "Influencer Operations Intern",
+    team: "Social & Growth",
+    type: "Internship",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Help run the operational engine behind creator collaborations.",
+    description: "Support creator discovery, outreach, coordination, tracking and campaign execution.",
+    sections: {
+      "What you'll own": "Creator databases, coordination, tracking and campaign operations.",
+      "What we're looking for": "Highly organised people who are comfortable communicating with lots of stakeholders.",
+      "Internship": "A practical role at the intersection of creators, content and operations."
+    }
+  },
+
+  {
+    id: "ai-tech-engineer",
+    title: "AI Tech Engineer",
+    team: "Tech & Engineering",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Build AI-powered systems that make creative and business workflows better.",
+    description: "Design and build practical AI systems across internal tools, workflows and products.",
+    sections: {
+      "What you'll own": "AI integrations, automation, prototyping and production systems.",
+      "What we're looking for": "Strong engineering fundamentals and practical AI experience.",
+      "Mindset": "Build useful things quickly, then make them robust."
+    }
+  },
+
+  {
+    id: "ai-intern",
+    title: "AI Intern",
+    team: "Tech & Engineering",
+    type: "Internship",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Experiment with AI tools and build real systems alongside the team.",
+    description: "Work on practical AI projects ranging from experimentation and automation to internal tools.",
+    sections: {
+      "What you'll own": "Prototypes, AI workflows, research and implementation.",
+      "What we're looking for": "Curiosity, technical ability and a willingness to build.",
+      "Internship": "You'll be expected to ship, not just observe."
+    }
+  },
+
+  {
+    id: "robotics-tech-engineer",
+    title: "Robotics Tech Engineer",
+    team: "Tech & Engineering",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Build physical systems at the intersection of robotics, technology and experimentation.",
+    description: "Work on robotics projects from prototyping to implementation.",
+    sections: {
+      "What you'll own": "Hardware, software integration, robotics experiments and prototypes.",
+      "What we're looking for": "Strong technical fundamentals and a builder mentality.",
+      "The environment": "Experimental, fast-moving and hands-on."
+    }
+  },
+
+  {
+    id: "lead-engineer-builders",
+    title: "Lead Engineer — Builders.mu",
+    team: "Tech & Engineering",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Lead engineering for Builders.mu and turn ambitious ideas into working products.",
+    description: "Own engineering direction, architecture and execution for Builders.mu projects.",
+    sections: {
+      "What you'll own": "Technical architecture, engineering execution and team leadership.",
+      "What we're looking for": "Strong engineering judgement and an appetite for building from zero.",
+      "Leadership": "You will help define both what gets built and how it gets built."
+    }
+  },
+
+  {
+    id: "engineering-intern-builders",
+    title: "Engineering Intern — Builders.mu",
+    team: "Tech & Engineering",
+    type: "Internship",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Build real products with the Builders.mu engineering team.",
+    description: "Work directly on product and engineering projects while learning through real execution.",
+    sections: {
+      "What you'll own": "Features, prototypes, debugging and product experiments.",
+      "What we're looking for": "Strong fundamentals, curiosity and a willingness to ship.",
+      "Internship": "This is a building role, not a shadowing role."
+    }
+  },
+
+  {
+    id: "hiring-manager",
+    title: "Hiring Manager — Directors’ Office",
+    team: "Operations",
+    type: "Full Time",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Help build the team behind the next phase of Masters' Union.",
+    description: "Own hiring processes across critical roles and work closely with leadership on talent decisions.",
+    sections: {
+      "What you'll own": "Hiring pipelines, candidate experience, coordination and recruitment strategy.",
+      "What we're looking for": "Strong judgement, communication and process ownership.",
+      "The role": "High ownership, high exposure and close work with leadership."
+    }
+  },
+
+  {
+    id: "project-manager-intern",
+    title: "Project Manager Intern — SSL’27",
+    team: "Operations",
+    type: "Internship",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Help coordinate projects, people and execution across SSL'27.",
+    description: "Support project planning, coordination, communication and execution across the initiative.",
+    sections: {
+      "What you'll own": "Project trackers, follow-ups, coordination and execution support.",
+      "What we're looking for": "Highly organised, proactive people who enjoy making things move.",
+      "Internship": "You'll work across multiple stakeholders and learn project management by doing."
+    }
+  },
+
+  {
+    id: "school-operations-gtm",
+    title: "School Operations & GTM Intern",
+    team: "Operations",
+    type: "Internship",
+    ctc: "ADD FROM PROJECTION TAB",
+    tldr: "Work at the intersection of school operations, growth and execution.",
+    description: "Support operational and go-to-market initiatives across the school ecosystem.",
+    sections: {
+      "What you'll own": "Operational projects, coordination, research and GTM execution.",
+      "What we're looking for": "Problem solvers who are comfortable working across functions.",
+      "Internship": "A high-exposure role with real ownership."
+    }
+  }
+
+];
+
+/* =========================================================
+   ROUTING
+========================================================= */
+
+function slugify(str) {
+  return str.toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function goHome() {
+  history.pushState({}, "", window.location.pathname);
+  renderHome();
+  window.scrollTo(0, 0);
+}
+
+function goRole(id) {
+  history.pushState({}, "", "?role=" + id);
+  renderRolePage(id);
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener("popstate", () => {
+  const id = new URLSearchParams(location.search).get("role");
+
+  if (id) {
+    renderRolePage(id);
+  } else {
+    renderHome();
+  }
+});
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function renderHome() {
+
+  document.getElementById("app").innerHTML = `
+
+    <nav>
+      <a href="#" onclick="goHome(); return false;">
+        <div class="logo">
+          MASTERS' UNION
+          <span>CREATIVE STUDIO</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <a href="#roles">OPEN ROLES</a>
+        <a href="#work">OUR WORK</a>
+        <a href="#join">JOIN US</a>
+      </div>
+    </nav>
+
+    <main>
+
+      <section class="hero">
+
+        <div class="eyebrow">
+          Masters' Union — Creative Studio
+        </div>
+
+        <h1>
+          Tell stories<br>
+          by <em>Doing.</em>
+        </h1>
+
+        <div class="hero-bottom">
+
+          <p>
+            We make ideas visible. Films, content, experiences,
+            technology and everything in between.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>24</strong>
+              <span>Open Roles</span>
+            </div>
+
+            <div class="stat">
+              <strong>8</strong>
+              <span>Teams</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section>
+
+        <div class="section-label">01 — Who we are</div>
+
+        <div class="intro">
+
+          <h2>
+            We don't<br>
+            just talk<br>
+            about ideas.
+          </h2>
+
+          <div class="intro-copy">
+            <p>
+              Masters' Union Creative Studio is built around people
+              who like making things.
+            </p>
+
+            <br>
+
+            <p>
+              Writers, filmmakers, designers, producers, engineers,
+              operators and creators working together to build
+              things people notice.
+            </p>
+
+            <br>
+
+            <p>
+              If you're waiting for permission to start,
+              this probably isn't the place.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section id="work" class="work-section">
+
+        <div class="section-label">02 — Some of our work</div>
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/IyMIGNBmRrg"
+            title="Masters' Union Creative Studio"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+      </section>
+
+
+      <section id="roles" class="roles-section">
+
+        <div class="roles-top">
+
+          <div>
+            <div class="section-label">03 — Come build with us</div>
+
+            <h2>
+              OPEN<br>
+              ROLES
+            </h2>
+          </div>
+
+          <div class="search-area">
+
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search roles..."
+              oninput="filterRoles()"
+            >
+
+            <select id="teamFilter" onchange="filterRoles()">
+              <option value="">All Teams</option>
+              <option>Leadership</option>
+              <option>Creative & Writing</option>
+              <option>Production</option>
+              <option>Post-Production</option>
+              <option>Design</option>
+              <option>Social & Growth</option>
+              <option>Tech & Engineering</option>
+              <option>Operations</option>
+            </select>
+
+            <select id="typeFilter" onchange="filterRoles()">
+              <option value="">All Types</option>
+              <option>Full Time</option>
+              <option>Internship</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="roles-count" id="rolesCount">
+          24 roles
+        </div>
+
+        <div class="role-list" id="roleList"></div>
+
+      </section>
+
+
+      <section class="perks">
+
+        <div class="section-label" style="color:#909b91;">
+          04 — What you'll get
+        </div>
+
+        <div class="perks-grid">
+
+          <div class="perk">
+            <div class="perk-number">01</div>
+            <h3>Real ownership.</h3>
+          </div>
+
+          <div class="perk">
+            <div class="perk-number">02</div>
+            <h3>Work that ships.</h3>
+          </div>
+
+          <div class="perk">
+            <div class="perk-number">03</div>
+            <h3>People who build.</h3>
+          </div>
+
+          <div class="perk">
+            <div class="perk-number">04</div>
+            <h3>Room to experiment.</h3>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section id="join" class="cta">
+
+        <div class="section-label">
+          05 — Your move
+        </div>
+
+        <h2>
+          Passion<br>
+          trumps resumes.
+        </h2>
+
+        <div class="cta-bottom">
+
+          <p>
+            We care about what you can make, how you think,
+            and whether you're hungry enough to figure things out.
+          </p>
+
+          <a href="#roles" class="btn btn-black">
+            View Open Roles →
+          </a>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer>
+      <div>MASTERS' UNION © 2026</div>
+      <div>CREATIVE STUDIO</div>
+    </footer>
+  `;
+
+  renderRoleList();
+}
+
+
+/* =========================================================
+   ROLE LIST
+========================================================= */
+
+function renderRoleList(filtered = roles) {
+
+  const list = document.getElementById("roleList");
+
+  if (!filtered.length) {
+    list.innerHTML = `
+      <div style="padding:50px 0;color:#777;">
+        No roles found.
+      </div>
+    `;
+
+    document.getElementById("rolesCount").textContent = "0 roles";
+    return;
+  }
+
+  document.getElementById("rolesCount").textContent =
+    filtered.length + " open role" + (filtered.length === 1 ? "" : "s");
+
+  list.innerHTML = filtered.map(role => `
+
+    <article class="role-item" id="item-${role.id}">
+
+      <!-- ONLY ROLE NAME ON THE LIST -->
+      <div
+        class="role-main"
+        onclick="toggleRole('${role.id}')"
+      >
+
+        <div class="role-title">
+          ${role.title}
+        </div>
+
+        <div class="role-arrow">
+          +
+        </div>
+
+      </div>
+
+
+      <!-- DETAILS OPEN AFTER ONE CLICK -->
+      <div class="role-detail">
+
+        <div class="role-detail-inner">
+
+          <p class="tldr">
+            ${role.tldr}
+          </p>
+
+          <div class="detail-meta">
+
+            <div class="meta-box">
+              <span class="meta-label">Team</span>
+              <span class="meta-value">${role.team}</span>
+            </div>
+
+            <div class="meta-box">
+              <span class="meta-label">Type</span>
+              <span class="meta-value">${role.type}</span>
+            </div>
+
+            <div class="meta-box">
+              <span class="meta-label">CTC</span>
+              <span class="meta-value">${role.ctc}</span>
+            </div>
+
+          </div>
+
+
+          <div class="accordion">
+
+            ${Object.entries(role.sections).map(([heading, content]) => `
+
+              <div class="accordion-box">
+
+                <div
+                  class="accordion-header"
+                  onclick="toggleAccordion(event, this)"
+                >
+                  ${heading}
+                  <span>+</span>
+                </div>
+
+                <div class="accordion-content">
+
+                  <div class="accordion-content-inner">
+                    ${content}
+                  </div>
+
+                </div>
+
+              </div>
+
+            `).join("")}
+
+          </div>
+
+
+          <div class="role-actions">
+
+            <button
+              class="btn btn-black"
+              onclick="goRole('${role.id}')"
+            >
+              View Role →
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join("");
+}
+
+
+/* =========================================================
+   ROLE EXPANSION
+========================================================= */
+
+function toggleRole(id) {
+
+  const item = document.getElementById("item-" + id);
+
+  if (!item) return;
+
+  const isOpen = item.classList.contains("open");
+
+  document.querySelectorAll(".role-item.open")
+    .forEach(el => el.classList.remove("open"));
+
+  if (!isOpen) {
+    item.classList.add("open");
+  }
+}
+
+
+/* =========================================================
+   SMALL BOX ACCORDIONS
+========================================================= */
+
+function toggleAccordion(event, element) {
+
+  event.stopPropagation();
+
+  const box = element.parentElement;
+  const wasActive = box.classList.contains("active");
+
+  box.parentElement
+    .querySelectorAll(".accordion-box")
+    .forEach(item => item.classList.remove("active"));
+
+  if (!wasActive) {
+    box.classList.add("active");
+  }
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function filterRoles() {
+
+  const search =
+    document.getElementById("searchInput").value.toLowerCase();
+
+  const team =
+    document.getElementById("teamFilter").value;
+
+  const type =
+    document.getElementById("typeFilter").value;
+
+  const filtered = roles.filter(role => {
+
+    const matchesSearch =
+      role.title.toLowerCase().includes(search) ||
+      role.team.toLowerCase().includes(search);
+
+    const matchesTeam =
+      !team || role.team === team;
+
+    const matchesType =
+      !type || role.type === type;
+
+    return matchesSearch && matchesTeam && matchesType;
+
+  });
+
+  renderRoleList(filtered);
+}
+
+
+/* =========================================================
+   ROLE PAGE
+========================================================= */
+
+function renderRolePage(id) {
+
+  const role = roles.find(r => r.id === id);
+
+  if (!role) {
+    goHome();
+    return;
+  }
+
+  document.getElementById("app").innerHTML = `
+
+    <nav>
+
+      <a href="#" onclick="goHome(); return false;">
+        <div class="logo">
+          MASTERS' UNION
+          <span>CREATIVE STUDIO</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <a href="#" onclick="goHome(); return false;">
+          ALL ROLES
+        </a>
+      </div>
+
+    </nav>
+
+
+    <main class="role-page">
+
+      <section class="role-hero">
+
+        <a
+          href="#"
+          onclick="goHome(); return false;"
+          class="back"
+        >
+          ← Back to all roles
+        </a>
+
+        <div class="section-label" style="color:#888;">
+          ${role.team} / ${role.type}
+        </div>
+
+        <h1>
+          ${role.title}
+        </h1>
+
+      </section>
+
+
+      <div class="role-page-body">
+
+        <div class="role-page-grid">
+
+          <div>
+
+            <div class="section-label">
+              The role
+            </div>
+
+            <div class="role-page-description">
+              ${role.description}
+            </div>
+
+          </div>
+
+
+          <div class="role-page-side">
+
+            <div class="side-row">
+              <small>Team</small>
+              <strong>${role.team}</strong>
+            </div>
+
+            <div class="side-row">
+              <small>Type</small>
+              <strong>${role.type}</strong>
+            </div>
+
+            <div class="side-row">
+              <small>CTC</small>
+              <strong>${role.ctc}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="apply-section">
+
+          <div class="section-label">
+            Ready?
+          </div>
+
+          <h2>
+            Apply for this role.
+          </h2>
+
+          <form
+            class="application"
+            id="applicationForm"
+            onsubmit="submitApplication(event)"
+          >
+
+            <input
+              type="hidden"
+              id="appliedRole"
+              value="${role.title}"
+            >
+
+            <div class="form-grid">
+
+              <div class="field">
+                <label>Full Name *</label>
+                <input
+                  required
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                >
+              </div>
+
+              <div class="field">
+                <label>Email *</label>
+                <input
+                  required
+                  name="email"
+                  type="email"
+                  placeholder="you@email.com"
+                >
+              </div>
+
+              <div class="field">
+                <label>Phone Number *</label>
+                <input
+                  required
+                  name="phone"
+                  type="tel"
+                  placeholder="+91"
+                >
+              </div>
+
+              <div class="field">
+                <label>College / University</label>
+                <input
+                  name="college"
+                  type="text"
+                  placeholder="Your college"
+                >
+              </div>
+
+              <div class="field">
+                <label>Current Year</label>
+                <select name="year">
+                  <option value="">Select</option>
+                  <option>1st Year</option>
+                  <option>2nd Year</option>
+                  <option>3rd Year</option>
+                  <option>4th Year</option>
+                  <option>Graduate</option>
+                  <option>Working Professional</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Role</label>
+                <input
+                  type="text"
+                  value="${role.title}"
+                  readonly
+                >
+              </div>
+
+              <div class="field full">
+                <label>Portfolio / LinkedIn</label>
+                <input
+                  name="portfolio"
+                  type="url"
+                  placeholder="https://"
+                >
+              </div>
+
+              <div class="field full">
+                <label>Resume</label>
+                <input
+                  name="resume"
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                >
+              </div>
+
+              <div class="field full">
+                <label>Why do you want to join Masters' Union Creative Studio?</label>
+                <textarea
+                  name="why"
+                  placeholder="Tell us something that makes you interesting."
+                ></textarea>
+              </div>
+
+              <div class="field full">
+                <label>Anything else we should know?</label>
+                <textarea
+                  name="anything"
+                  placeholder="Optional"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <button class="submit-btn" type="submit">
+              Submit Application →
+            </button>
+
+            <div class="form-note">
+              Your application will be reviewed by the Creative Studio team.
+            </div>
+
+            <div class="success" id="successMessage">
+              Application captured. Thank you — we'll be in touch.
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <footer>
+      <div>MASTERS' UNION © 2026</div>
+      <div>CREATIVE STUDIO</div>
+    </footer>
+  `;
+}
+
+
+/* =========================================================
+   APPLICATION
+========================================================= */
+
+function submitApplication(event) {
+
+  event.preventDefault();
+
+  /*
+    IMPORTANT:
+
+    This currently shows the success state locally.
+
+    To actually send applications somewhere, connect this
+    form to Formspree / Google Forms / your backend.
+
+    Do NOT put a private API key directly into this HTML.
+  */
+
+  document.getElementById("successMessage").style.display = "block";
+
+  event.target.reset();
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+const initialRole =
+  new URLSearchParams(location.search).get("role");
+
+if (initialRole) {
+  renderRolePage(initialRole);
+} else {
+  renderHome();
+}
+
+</script>
+
+</body>
+</html>
